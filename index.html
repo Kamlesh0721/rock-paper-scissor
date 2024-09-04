@@ -32,8 +32,20 @@
       Scissor
     </button>
 
+    <div class="score-board">
+      <h2 >Score</h2>
+      <div class="win">win <span id = "win-score">0</span></div>
+      <div class="loose">loose <span id="loose-score">0</span></div>
+      <div class="tie">tie <span id="tie-score">0</span></div>
+    </div>
+
     <script>
       // Rock : 0 | Paper : 1 | Scissor : 2
+      const scoreBoard = {
+        win: 0,
+        loose: 0,
+        tie: 0,
+      };
 
       function getComputerChoice() {
         let choice = Math.floor(Math.random() * 3);
@@ -61,16 +73,21 @@
       }
 
       function showResult(computerChoice, userChoice) {
-        console.log(`Computer Choice : ${computerChoice}\nUser Choice : ${userChoice}`);
-        
         let result = calcResult(computerChoice, userChoice);
         if (result === -1) {
+          scoreBoard.tie = scoreBoard.tie + 1;
           console.log("TIE");
         } else if (result === 0) {
+          scoreBoard.loose = scoreBoard.loose + 1;
           console.log("LOOSE");
         } else {
+          scoreBoard.win = scoreBoard.win + 1;
           console.log("WIN");
         }
+
+        document.getElementById('win-score').textContent=scoreBoard.win;
+        document.getElementById('loose-score').textContent=scoreBoard.loose;
+        document.getElementById('tie-score').textContent=scoreBoard.tie;
       }
     </script>
   </body>
