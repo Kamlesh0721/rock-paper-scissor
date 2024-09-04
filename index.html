@@ -10,7 +10,7 @@
     <button
       class="tools"
       onclick="
-        showResult(getComputerChoice(),'rock');
+        playGame(getComputerChoice(),'rock');
     "
     >
       Rock
@@ -18,7 +18,7 @@
     <button
       class="tools"
       onclick="
-    showResult(getComputerChoice(),'paper');
+    playGame(getComputerChoice(),'paper');
 "
     >
       Paper
@@ -26,15 +26,15 @@
     <button
       class="tools"
       onclick="
-    showResult(getComputerChoice(),'scissor');
+    playGame(getComputerChoice(),'scissor');
 "
     >
       Scissor
     </button>
 
     <div class="score-board">
-      <h2 >Score</h2>
-      <div class="win">win <span id = "win-score">0</span></div>
+      <h2>Score</h2>
+      <div class="win">win <span id="win-score">0</span></div>
       <div class="loose">loose <span id="loose-score">0</span></div>
       <div class="tie">tie <span id="tie-score">0</span></div>
     </div>
@@ -45,8 +45,10 @@
         win: 0,
         loose: 0,
         tie: 0,
+        win_streak: 0,
       };
 
+      let winning_streak = false;
       function getComputerChoice() {
         let choice = Math.floor(Math.random() * 3);
         if (choice === 0) {
@@ -72,22 +74,27 @@
         }
       }
 
-      function showResult(computerChoice, userChoice) {
+      function playGame(computerChoice, userChoice) {
         let result = calcResult(computerChoice, userChoice);
         if (result === -1) {
           scoreBoard.tie = scoreBoard.tie + 1;
-          console.log("TIE");
+          winning_streak = false;
         } else if (result === 0) {
           scoreBoard.loose = scoreBoard.loose + 1;
-          console.log("LOOSE");
+          winning_streak = false;
+          scoreBoard.win_streak = 0;
         } else {
           scoreBoard.win = scoreBoard.win + 1;
-          console.log("WIN");
+          scoreBoard.win_streak = scoreBoard.win_streak + 1;
         }
+        updateScoreBoard();
+      }
 
-        document.getElementById('win-score').textContent=scoreBoard.win;
-        document.getElementById('loose-score').textContent=scoreBoard.loose;
-        document.getElementById('tie-score').textContent=scoreBoard.tie;
+      function updateScoreBoard() {
+        document.getElementById("win-score").textContent = scoreBoard.win;
+        document.getElementById("loose-score").textContent = scoreBoard.loose;
+        document.getElementById("tie-score").textContent = scoreBoard.tie;
+        console.log(scoreBoard);
       }
     </script>
   </body>
