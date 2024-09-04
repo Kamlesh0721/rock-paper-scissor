@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock - Paper - Scissors - Game</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <h1>Rock-Paper-Scissor</h1>
+    <button
+      class="tools"
+      onclick="
+        showResult(getComputerChoice(),'rock');
+    "
+    >
+      Rock
+    </button>
+    <button
+      class="tools"
+      onclick="
+    showResult(getComputerChoice(),'paper');
+"
+    >
+      Paper
+    </button>
+    <button
+      class="tools"
+      onclick="
+    showResult(getComputerChoice(),'scissor');
+"
+    >
+      Scissor
+    </button>
+
+    <script>
+      // Rock : 0 | Paper : 1 | Scissor : 2
+
+      function getComputerChoice() {
+        let choice = Math.floor(Math.random() * 3);
+        if (choice === 0) {
+          return "rock";
+        } else if (choice === 1) {
+          return "paper";
+        } else {
+          return "scissor";
+        }
+      }
+
+      function calcResult(computerChoice, userChoice) {
+        if (computerChoice === userChoice) {
+          return -1;
+        } else if (
+          (computerChoice === "rock" && userChoice === "paper") ||
+          (computerChoice === "paper" && userChoice === "scissor") ||
+          (computerChoice === "scissor" && userChoice === "rock")
+        ) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+
+      function showResult(computerChoice, userChoice) {
+        console.log(`Computer Choice : ${computerChoice}\nUser Choice : ${userChoice}`);
+        
+        let result = calcResult(computerChoice, userChoice);
+        if (result === -1) {
+          console.log("TIE");
+        } else if (result === 0) {
+          console.log("LOOSE");
+        } else {
+          console.log("WIN");
+        }
+      }
+    </script>
+  </body>
 </html>
