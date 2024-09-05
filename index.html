@@ -11,8 +11,6 @@
 <body>
   <h1>Rock-Paper-Scissor</h1>
 
-
-
   <div class="available-choice">
     <div class="choice rock" onclick="
         playGame(getComputerChoice(),'rock');
@@ -34,22 +32,22 @@
 
   </div>
 
+  <div class="result-container">
+    <h2 id="result">play game</h2>
 
-  <div class="score-board">
-    <h2>Score</h2>
-    <div class="win">win <span id="win-score">0</span></div>
-    <div class="loose">loose <span id="loose-score">0</span></div>
-    <div class="tie">tie <span id="tie-score">0</span></div>
-  </div>
-  
-  <div id="result">
-    <h3>result</h3>
-  </div>
-
-  <div>
-    <h2>Win-Streak</h2>
+    <h2>Win Streak</h2>
     <span id="win-streak">0</span>
   </div>
+
+  <div class="score-board">
+    <h2 >Score</h2>
+    <div class="win">win <div id="win-score">0</div></div>
+    <div class="loose">loose <div id="loose-score">0</div></div>
+    <div class="tie">tie <div id="tie-score">0</div></div>
+  </div>
+
+
+
 
 
   <script src="./script.js"></script>

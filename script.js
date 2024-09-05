@@ -34,25 +34,32 @@ const scoreBoard = {
 
   function playGame(computerChoice, userChoice) {
     let result = calcResult(computerChoice, userChoice);
+    let textResult="";
     if (result === -1) {
       scoreBoard.tie = scoreBoard.tie + 1;
       winning_streak = false;
+      textResult="tie";
     } else if (result === 0) {
       scoreBoard.loose = scoreBoard.loose + 1;
       winning_streak = false;
       scoreBoard.win_streak = 0;
+      textResult="Loose";
     } else {
       scoreBoard.win = scoreBoard.win + 1;
       scoreBoard.win_streak = scoreBoard.win_streak + 1;
+      textResult="Win";
     }
 
-    updateScoreBoard();
+    updateScoreBoard(textResult);
   }
 
-  function updateScoreBoard() {
+    
+  function updateScoreBoard(textResult) {
     document.getElementById("win-score").textContent = scoreBoard.win;
     document.getElementById("loose-score").textContent = scoreBoard.loose;
     document.getElementById("tie-score").textContent = scoreBoard.tie;
     document.getElementById("win-streak").textContent =
       scoreBoard.win_streak;
+
+    document.getElementById("result").textContent=textResult;
   }
