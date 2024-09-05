@@ -1,101 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock - Paper - Scissors - Game</title>
-  </head>
-  <body>
-    <h1>Rock-Paper-Scissor</h1>
-    <button
-      class="tools"
-      onclick="
-        playGame(getComputerChoice(),'rock');
-    "
-    >
-      Rock
-    </button>
-    <button
-      class="tools"
-      onclick="
-    playGame(getComputerChoice(),'paper');
-"
-    >
-      Paper
-    </button>
-    <button
-      class="tools"
-      onclick="
-    playGame(getComputerChoice(),'scissor');
-"
-    >
-      Scissor
-    </button>
 
-    <div class="score-board">
-      <h2>Score</h2>
-      <div class="win">win <span id="win-score">0</span></div>
-      <div class="loose">loose <span id="loose-score">0</span></div>
-      <div class="tie">tie <span id="tie-score">0</span></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock - Paper - Scissors - Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <h1>Rock-Paper-Scissor</h1>
+
+
+
+  <div class="available-choice">
+    <div class="choice rock" onclick="
+        playGame(getComputerChoice(),'rock');
+    ">
+      <img src="./assets/Rock.jpg" alt="rock" />
     </div>
 
-    <script>
-      // Rock : 0 | Paper : 1 | Scissor : 2
-      const scoreBoard = {
-        win: 0,
-        loose: 0,
-        tie: 0,
-        win_streak: 0,
-      };
+    <div class="choice paper" onclick="
+     playGame(getComputerChoice(),'paper');
+    ">
+      <img src="./assets/Paper.jpg" alt="paper" />
+    </div>
 
-      let winning_streak = false;
-      function getComputerChoice() {
-        let choice = Math.floor(Math.random() * 3);
-        if (choice === 0) {
-          return "rock";
-        } else if (choice === 1) {
-          return "paper";
-        } else {
-          return "scissor";
-        }
-      }
+    <div class="choice scissor" onclick="
+    playGame(getComputerChoice(),'scissor');
+">
+      <img src="./assets/Scissor.jpg" alt="scissor" />
+    </div>
 
-      function calcResult(computerChoice, userChoice) {
-        if (computerChoice === userChoice) {
-          return -1;
-        } else if (
-          (computerChoice === "rock" && userChoice === "paper") ||
-          (computerChoice === "paper" && userChoice === "scissor") ||
-          (computerChoice === "scissor" && userChoice === "rock")
-        ) {
-          return 1;
-        } else {
-          return 0;
-        }
-      }
+  </div>
 
-      function playGame(computerChoice, userChoice) {
-        let result = calcResult(computerChoice, userChoice);
-        if (result === -1) {
-          scoreBoard.tie = scoreBoard.tie + 1;
-          winning_streak = false;
-        } else if (result === 0) {
-          scoreBoard.loose = scoreBoard.loose + 1;
-          winning_streak = false;
-          scoreBoard.win_streak = 0;
-        } else {
-          scoreBoard.win = scoreBoard.win + 1;
-          scoreBoard.win_streak = scoreBoard.win_streak + 1;
-        }
-        updateScoreBoard();
-      }
 
-      function updateScoreBoard() {
-        document.getElementById("win-score").textContent = scoreBoard.win;
-        document.getElementById("loose-score").textContent = scoreBoard.loose;
-        document.getElementById("tie-score").textContent = scoreBoard.tie;
-        console.log(scoreBoard);
-      }
-    </script>
-  </body>
+  <div class="score-board">
+    <h2>Score</h2>
+    <div class="win">win <span id="win-score">0</span></div>
+    <div class="loose">loose <span id="loose-score">0</span></div>
+    <div class="tie">tie <span id="tie-score">0</span></div>
+  </div>
+  
+  <div id="result">
+    <h3>result</h3>
+  </div>
+
+  <div>
+    <h2>Win-Streak</h2>
+    <span id="win-streak">0</span>
+  </div>
+
+
+  <script src="./script.js"></script>
+</body>
+
 </html>
